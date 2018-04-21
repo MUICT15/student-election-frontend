@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <NavbarComponent/>
     <div class="container">
       <router-view></router-view>
     </div>
@@ -8,11 +7,7 @@
 </template>
 
 <script>
-  import NavbarComponent from './components/navbar'
   export default {
-    components: {
-      NavbarComponent
-    },
     name: 'app'
   }
 </script>
@@ -32,8 +27,4 @@
     width: auto;
   }
 
-  .container{
-    display: flex;
-    justify-content: center;
-  }
 </style>

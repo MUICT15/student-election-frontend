@@ -1,5 +1,7 @@
 <template>
+<div class="container">
   <div class="form-login">
+    <h2>MUICT election</h2>
     <!-- <h2><img src="https://upload.wikimedia.org/wikipedia/th/a/a0/Logo-ICT.png"> </h2> -->
     <input type="text" placeholder="username" v-model="username" />
     <br>
@@ -10,16 +12,11 @@
       login
     </button>
   </div>
+</div>
 </template>
 <script>
-  import {
-    client
-  } from '../feathers'
-  import NavbarComponent from '../components/navbar'
+  import client from '../feathers'
   export default {
-    components: {
-      NavbarComponent
-    },
     data: function () {
       return {
         username: '',
@@ -28,14 +25,12 @@
     },
     methods: {
       login: function () {
-        console.log(this.username)
-        console.log(this.password)
         client.authenticate({
           strategy: 'local',
           email: this.username,
           password: this.password
         }).then((data) => {
-          console.log(data)
+          this.$router.push('/election');
         })
       }
     }
@@ -43,6 +38,10 @@
 
 </script>
 <style scoped>
+.container{
+  display: flex;
+  justify-content: center;
+}
   h2 {
     text-align: center;
   }
@@ -60,12 +59,13 @@
     border-style: none;
     color: white;
     font-size: 20px;
+    cursor: pointer;
   }
 
   input {
-    width: 200px;
+    width: 100%;
     height: 40px;
-    margin-top: 30px;
+    margin-top: 20px;
     margin-bottom: 20px;
     background-color: #004E4F;
     border-style: none;
@@ -89,6 +89,7 @@
     border-radius: 20px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, .1);
     transition: .8s ease;
+    width: 30vw;
   }
 
   .form-login:hover {
